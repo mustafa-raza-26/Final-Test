@@ -9,11 +9,12 @@ let doctor = document.getElementById('doctor');
 let submit = document.getElementById('submit');
 
 if (submit) {
-    submit.addEventListener('click', async (e) =>{
+    submit.addEventListener('click', async () =>{
         let ntime = formatTime(time.value)
         const { error } = await client
         .from('appoinmentForm')
         .insert({
+            id: user.id,
             name:nameAp.value,
             email:emailAp.value,
             number:numberAp.value,
@@ -29,6 +30,15 @@ if (submit) {
             console.log('Your Form is Submit');
             window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/appoinment.html'
         }
+
+        nameAp.value = ''
+        emailAp.value = ''
+        numberAp.value = ''
+        dob.value = ''
+        date.value = ''
+        ntime.value = ''
+        reason.value = ''
+        doctor.value = ''
     
     })
 }

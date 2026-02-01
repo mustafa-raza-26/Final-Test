@@ -45,8 +45,9 @@ async function fetchAppointments() {
   });
 }
 
-card.addEventListener('click', async (e) => {
-  if (e.target.classList.contains('deleteBtn')) {
+if (card) {
+  card.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('deleteBtn')) {
 
     const appointmentId = e.target.dataset.id;
     const confirmDelete = confirm("Are you sure you want to cancel this appointment?");
@@ -64,6 +65,6 @@ card.addEventListener('click', async (e) => {
       fetchAppointments();
     }
   }
-});
-
+  });
+}
 fetchAppointments();
