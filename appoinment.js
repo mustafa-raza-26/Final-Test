@@ -18,7 +18,7 @@ async function fetchAppointments() {
     return;
   }
 
-  card.innerHTML = "";
+  // card.innerHTML = "";
 
   if (!data || data.length === 0) {
     card.innerHTML = `
@@ -31,7 +31,7 @@ async function fetchAppointments() {
 
   for (let i = 0; i < data.length; i++) {
     card.innerHTML += `
-      <div class="card col-10 col-md-3 p-3 mb-3">
+      <div class="col-10 col-md-3 p-3 mb-3">
         <span class="d-flex"><h5>Patient Name:</h5>&nbsp;<h5>${data[i].name}</h5></span>
         <span class="d-flex"><h5>Doctor Name:</h5>&nbsp;<h5>${data[i].doctor}</h5></span>
         <span class="d-flex"><h5>Date & Time:</h5>&nbsp;<h5>${data[i].date}</h5></span>
