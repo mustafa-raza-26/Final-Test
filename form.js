@@ -14,7 +14,6 @@ if (submit) {
         const { error } = await client
         .from('appoinmentForm')
         .insert({
-            id: user.id,
             name:nameAp.value,
             email:emailAp.value,
             number:numberAp.value,

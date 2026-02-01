@@ -29,20 +29,20 @@ async function fetchAppointments() {
     return;
   }
 
-  data.forEach((item) => {
+  for (let i = 0; i < data.length; i++) {
     card.innerHTML += `
       <div class="card col-10 col-md-3 p-3 mb-3">
-        <span class="d-flex"><h5>Patient Name:</h5>&nbsp;<h5>${item.name}</h5></span>
-        <span class="d-flex"><h5>Doctor Name:</h5>&nbsp;<h5>${item.doctor}</h5></span>
-        <span class="d-flex"><h5>Date & Time:</h5>&nbsp;<h5>${item.date}</h5></span>
-        <span class="d-flex"><h5>Reason:</h5>&nbsp;<h5>${item.reason}</h5></span>
+        <span class="d-flex"><h5>Patient Name:</h5>&nbsp;<h5>${data[i].name}</h5></span>
+        <span class="d-flex"><h5>Doctor Name:</h5>&nbsp;<h5>${data[i].doctor}</h5></span>
+        <span class="d-flex"><h5>Date & Time:</h5>&nbsp;<h5>${data[i].date}</h5></span>
+        <span class="d-flex"><h5>Reason:</h5>&nbsp;<h5>${data[i].reason}</h5></span>
 
-        <button class="deleteBtn mt-2" data-id="${item.id}">
+        <button class="deleteBtn mt-2" data-id="${data[i].id}">
           Cancel
         </button>
       </div>
     `;
-  });
+  }
 }
 
 if (card) {
