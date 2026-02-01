@@ -27,7 +27,7 @@ if (submit) {
             console.log('error', error.message);
         }else{
             console.log('Your Form is Submit');
-            window.location.href = '/appoinment.html'
+            window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/appoinment.html'
         }
     
     })

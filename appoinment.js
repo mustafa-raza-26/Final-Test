@@ -1,8 +1,6 @@
-let card = document.getElementById('card')
-let cancelBtn = document.getElementById('cancel')
+let card = document.getElementById('card');
 
 async function fetchAppointments() {
-
   const { data: { user } } = await client.auth.getUser();
 
   if (!user) {
@@ -13,39 +11,59 @@ async function fetchAppointments() {
   const { data, error } = await client
     .from('appoinmentForm')
     .select('*')
+    .eq('id', user.id);
 
   if (error) {
     console.log('Error:', error.message);
-  } else {
-    console.log('User appointments:', data);
+    return;
   }
 
-  for (let i = 0; i < data.length; i++) {
+  card.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    card.innerHTML = `
+      <div class="text-center mt-5 p-1">
+        <h4>You don't have any appointments</h4>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach((item) => {
     card.innerHTML += `
-    <div class="card col-10 col-md-4 p-3" >
-        <span class="d-flex"><h5>Patient Name: </h5> <h5> ${data[i].name}</h5></span>
-        <span class="d-flex"><h5>Doctor Name: </h5><h5> ${data[i].doctor}</h5></span>
-        <span class="d-flex"><h5>Date & Time: </h5><h5> ${data[i].date}</h5></span>
-        <span class="d-flex"><h5>Reason: </h5><h5> ${data[i].reason}</h5></span>
-        <button id="cancel" class="col-4 col-md-6">Cancel</button>
-    </div>
-    `
-  }
+      <div class="card col-10 col-md-3 p-3 mb-3">
+        <span class="d-flex"><h5>Patient Name:</h5>&nbsp;<h5>${item.name}</h5></span>
+        <span class="d-flex"><h5>Doctor Name:</h5>&nbsp;<h5>${item.doctor}</h5></span>
+        <span class="d-flex"><h5>Date & Time:</h5>&nbsp;<h5>${item.date}</h5></span>
+        <span class="d-flex"><h5>Reason:</h5>&nbsp;<h5>${item.reason}</h5></span>
+
+        <button class="deleteBtn mt-2" data-id="${item.id}">
+          Cancel
+        </button>
+      </div>
+    `;
+  });
 }
-fetchAppointments();
 
-if (cancelBtn) {
-    cancelBtn.addEventListener('click', async () => {   
-        const { data, error } = await client
-        .from('appoinmentForm')
-        .delete()
-        .eq('name', 'doctor', 'date', 'reason');
+card.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('deleteBtn')) {
 
-        if (error) {
-            console.log('Delete error:', error.message);
-        } else {
-            console.log('Deleted:', data);
-        }
+    const appointmentId = e.target.dataset.id;
+    const confirmDelete = confirm("Are you sure you want to cancel this appointment?");
+
+    if (!confirmDelete) return;
+
+    const { error } = await client
+      .from('appoinmentForm')
+      .delete()
+      .eq('id', appointmentId);
+
+    if (error) {
+      console.log('Delete error:', error.message);
+    } else {
+      fetchAppointments();
+    }
+  }
 });
 
-}
+fetchAppointments();

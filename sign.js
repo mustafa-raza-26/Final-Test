@@ -19,7 +19,7 @@ if (signupBtn) {
       email: email.value,
       password: password.value,
       options: {
-        emailRedirectTo: "http://127.0.0.1:5500/login.html",
+        emailRedirectTo: "https://mustafa-raza-26.github.io/Final-Test/login.html",
         data: {
           displayName: user_name.value,
           number: number.value
@@ -42,13 +42,13 @@ if (signupBtn) {
       });
 
     if (dbError) {
-      console.error("Database Insert Error:", dbError.message);
+      console.error("Error:", dbError.message);
       alert("Error storing user info: " + dbError.message);
       return;
     }
 
     alert('Your account has been created successfully!');
-    window.location.href = "http://127.0.0.1:5500/login.html";
+    window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
 
     user_name.value = "";
     email.value = "";
@@ -64,7 +64,7 @@ if (googleBtn) {
     const { data, error } = await client.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://127.0.0.1:5500/index.html"
+        redirectTo: "https://mustafa-raza-26.github.io/Final-Test"
       }
     });
     if (error) {
@@ -80,7 +80,7 @@ if (fbBtn) {
     const { data, error } = await client.auth.signInWithOAuth({
       provider: "facebook",
       options: {
-        redirectTo: "http://127.0.0.1:5500/index.html"
+        redirectTo: "https://mustafa-raza-26.github.io/Final-Test"
       }
     });
     if (error) {

@@ -51,7 +51,7 @@ if (loginBtn) {
     }
 
     alert('You have logged in successfully!');
-    window.location.href = "http://127.0.0.1:5500/index.html"; // redirect to dashboard
+    window.location.href = "https://mustafa-raza-26.github.io/Final-Test";
   });
 }
 
@@ -64,7 +64,7 @@ if (logoutBtn) {
       return;
     }
     alert('You have logged out.');
-    window.location.href = "http://127.0.0.1:5500/login.html"; // redirect to login
+    window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
   });
 }
 

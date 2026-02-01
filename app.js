@@ -5,12 +5,12 @@ const client = supabase.createClient(supabaseURL,supabaseKey);
 let book = document.getElementById("book");
 if(book){
     book.addEventListener("click", ()=>{
-        // ================= REAL-TIME AUTH LISTENER =================
-client.auth.onAuthStateChange((event, session) => {
+
+    client.auth.onAuthStateChange((event, session) => {
     if (!session) {
         alert('Sign up For Booking Appoinment');
     }else{
-        window.location.href = 'form.html'
+        window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/form.html'
     }
     });
 })
