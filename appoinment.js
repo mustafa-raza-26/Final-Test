@@ -1,5 +1,5 @@
 let card = document.getElementById('card')
-let cancelBtn = document.querySelectorAll('.cancel')
+let cancelBtn = document.getElementById('cancel')
 
 async function fetchAppointments() {
 
@@ -22,12 +22,12 @@ async function fetchAppointments() {
 
   for (let i = 0; i < data.length; i++) {
     card.innerHTML += `
-    <div class="card col-10 col-md-3 p-3" >
+    <div class="card col-10 col-md-4 p-3" >
         <span class="d-flex"><h5>Patient Name: </h5> <h5> ${data[i].name}</h5></span>
         <span class="d-flex"><h5>Doctor Name: </h5><h5> ${data[i].doctor}</h5></span>
         <span class="d-flex"><h5>Date & Time: </h5><h5> ${data[i].date}</h5></span>
         <span class="d-flex"><h5>Reason: </h5><h5> ${data[i].reason}</h5></span>
-        <button class="col-8 col-md-6 cancel">Cancel</button>
+        <button id="cancel" class="col-4 col-md-6">Cancel</button>
     </div>
     `
   }

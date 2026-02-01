@@ -75,6 +75,7 @@ client.auth.onAuthStateChange((event, session) => {
   if (session) {
     loginbut.style.display = "none";
     logoutBtn.style.display = "inline-block";
+    
   } else {
     loginbut.style.display = "inline-block";
     logoutBtn.style.display = "none";

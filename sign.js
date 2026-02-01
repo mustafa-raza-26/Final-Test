@@ -14,7 +14,7 @@ if (signupBtn) {
       return;
     }
 
-    // 1️⃣ Sign up with Supabase Auth
+    // Sign up with Supabase Auth
     const { data, error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
@@ -33,7 +33,6 @@ if (signupBtn) {
       return;
     }
 
-    // 2️⃣ Insert user info into your user table (without password)
     const { error: dbError } = await client
       .from('user')
       .insert({
@@ -49,10 +48,8 @@ if (signupBtn) {
     }
 
     alert('Your account has been created successfully!');
-    // redirect to login page
     window.location.href = "http://127.0.0.1:5500/login.html";
 
-    // Reset fields
     user_name.value = "";
     email.value = "";
     password.value = "";
