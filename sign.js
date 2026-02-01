@@ -6,32 +6,20 @@ let signupBtn = document.getElementById('signBtn');
 let googleBtn = document.getElementById('googleBtn');
 let fbBtn = document.getElementById('fbBtn');
 
-// -------------------- SIGN UP --------------------
 if (signupBtn) {
   signupBtn.addEventListener('click', async () => {
 
-    if (user_name.value == "" || email.value == "" || password.value == "") {
-      alert('Fill all fields before signup');
+    if (!user_name.value || !email.value || !password.value) {
+      alert('Fill all required fields before signup');
       return;
     }
 
-    const { error1 } = await client
-    .from('user')
-    .insert({ 
-      name: user_name.value,
-      email: email.value,
-      number: number.value
-     })
-     if (error1) {
-      console.log('error', error1.message);
-     }
-
+    // 1️⃣ Sign up with Supabase Auth
     const { data, error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
       options: {
-        // emailRedirectTo: "https://mustafa-raza-26.github.io/Login-Signup_by_supabase/dashboard.html",
-        emailRedirectTo: "http://127.0.0.1:5500/index.html",
+        emailRedirectTo: "http://127.0.0.1:5500/login.html",
         data: {
           displayName: user_name.value,
           number: number.value
@@ -42,11 +30,27 @@ if (signupBtn) {
     if (error) {
       alert("Signup Error: " + error.message);
       console.error("Signup Error:", error.message);
-    } else {
-      alert('Your account is created.........');
-      // window.location.href = "https://mustafa-raza-26.github.io/Login-Signup_by_supabase/dashboard.html";
-      window.location.href = "http://127.0.0.1:5500/index.html"
+      return;
     }
+
+    // 2️⃣ Insert user info into your user table (without password)
+    const { error: dbError } = await client
+      .from('user')
+      .insert({
+        name: user_name.value,
+        email: email.value,
+        number: number.value
+      });
+
+    if (dbError) {
+      console.error("Database Insert Error:", dbError.message);
+      alert("Error storing user info: " + dbError.message);
+      return;
+    }
+
+    alert('Your account has been created successfully!');
+    // redirect to login page
+    window.location.href = "http://127.0.0.1:5500/login.html";
 
     // Reset fields
     user_name.value = "";
@@ -57,24 +61,21 @@ if (signupBtn) {
   });
 }
 
-
 // -------------------- GOOGLE LOGIN --------------------
 if (googleBtn) {
   googleBtn.addEventListener('click', async () => {
     const { data, error } = await client.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://mustafa-raza-26.github.io/Login-Signup_by_supabase/dashboard.html"
+        redirectTo: "http://127.0.0.1:5500/index.html"
       }
     });
-
     if (error) {
-      console.error("Google Error:", error.message);
+      console.error("Google Login Error:", error.message);
       alert("Google Login Error: " + error.message);
     }
   });
 }
-
 
 // -------------------- FACEBOOK LOGIN --------------------
 if (fbBtn) {
@@ -82,14 +83,12 @@ if (fbBtn) {
     const { data, error } = await client.auth.signInWithOAuth({
       provider: "facebook",
       options: {
-        redirectTo: "https://mustafa-raza-26.github.io/Login-Signup_by_supabase/dashboard.html"
+        redirectTo: "http://127.0.0.1:5500/index.html"
       }
     });
-
     if (error) {
-      console.error("Facebook Error:", error.message);
-      window.location.href = 'https://mustafa-raza-26.github.io/Login-Signup_by_supabase/signup.html'
-      return;
+      console.error("Facebook Login Error:", error.message);
+      alert("Facebook Login Error: " + error.message);
     }
   });
 }
