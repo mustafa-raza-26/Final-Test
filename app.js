@@ -10,7 +10,8 @@ if(book){
     if (!session) {
         alert('Sign up For Booking Appoinment');
     }else{
-        window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/form.html'
+        // window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/form.html'
+        window.location.href = '/form.html'
     }
     });
 })

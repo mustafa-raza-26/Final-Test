@@ -27,6 +27,7 @@ if (submit) {
             console.log('error', error.message);
         }else{
             console.log('Your Form is Submit');
+            alert('Your Form is Submit');
             window.location.href = 'https://mustafa-raza-26.github.io/Final-Test/appoinment.html'
         }
 
@@ -35,7 +36,7 @@ if (submit) {
         numberAp.value = ''
         dob.value = ''
         date.value = ''
-        ntime.value = ''
+        time.value = ''
         reason.value = ''
         doctor.value = ''
     
