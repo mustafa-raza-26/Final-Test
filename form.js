@@ -25,6 +25,7 @@ if (submit) {
         })
         if (error) {
             console.log('error', error.message);
+            alert('error', error.message);
         }else{
             console.log('Your Form is Submit');
             alert('Your Form is Submit');
