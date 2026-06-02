@@ -44,13 +44,48 @@ if (submit) {
     })
 }
 
-function formatTime(time) {
-    let [hour, minute] = time.split(":");
-    hour = parseInt(hour);
+// function formatTime(time) {
+//     let [hour, minute] = time.split(":");
+//     hour = parseInt(hour);
 
-    let ampm = hour >= 12 ? "PM" : "AM";
+//     let ampm = hour >= 12 ? "PM" : "AM";
+//     hour = hour % 12 || 12;
+
+//     return `${hour}:${minute} ${ampm}`;
+// }
+
+function formatTime(time) {
+    const [hourStr, minute] = time.split(":");
+
+    let hour = parseInt(hourStr, 10);
+
+    const ampm = hour >= 12 ? "PM" : "AM";
     hour = hour % 12 || 12;
 
     return `${hour}:${minute} ${ampm}`;
 }
 
+async function saveTime() {
+    const time = document.getElementById("appointmentTime").value;
+
+    // Database mein 24-hour format save karo
+    const { error } = await client
+        .from("appoinmentForm")
+        .insert({
+            time: time
+        });
+
+    if (error) {
+        console.log(error.message);
+        return;
+    }
+
+    alert("Time saved!");
+}
+// const { data, error } = await client
+//     .from("appointments")
+//     .select("*");
+
+// data.forEach(item => {
+//     console.log(formatTime(item.appointment_time));
+// });
