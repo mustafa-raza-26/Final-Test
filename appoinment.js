@@ -37,7 +37,7 @@ async function fetchAppointments() {
         <span class="d-flex"><h5 style="font-weight: bold;">Patient Name:</h5>&nbsp;<h5>${data[i].name}</h5></span>
         <span class="d-flex"><h5 style="font-weight: bold;">Doctor Name:</h5>&nbsp;<h5>${data[i].doctor}</h5></span>
         <span class="d-flex"><h5 style="font-weight: bold;">Date:</h5>&nbsp;<h5>${data[i].date}</h5></span>
-        <span class="d-flex"><h5 style="font-weight: bold;">Time:</h5>&nbsp;<h5>${data[i].time}</h5></span>
+        <span class="d-flex"><h5 style="font-weight: bold;">Time:</h5>&nbsp;<h5>${formatTime(data[i].time)}</h5></span>
         <span class="d-flex"><h5 style="font-weight: bold;">Reason:</h5>&nbsp;<h5>${data[i].reason}</h5></span>
 
         <button class="col-6 col-md-4 deleteBtn mt-2" data-id="${data[i].id}">
