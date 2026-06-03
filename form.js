@@ -8,6 +8,23 @@ let reason = document.getElementById('reason');
 let doctor = document.getElementById('doctor');
 let submit = document.getElementById('submit');
 
+window.addEventListener('load', async () => {
+    const { data, error } = await client
+    .from('Admin_Portal_User')
+    .select('name,specialty')
+    if (error) {
+        console.log('error', error.message);
+        alert('error', error.message);
+    }else{
+
+        for (let i = 0; i < data.length; i++) {
+            doctor.innerHTML +=`
+                <option>Dr. ${data[i].name}&emsp;(${data[i].specialty})</option>
+            `
+        }
+    }
+});
+
 if (submit) {
     submit.addEventListener('click', async () =>{
         let ntime = formatTime(time.value)

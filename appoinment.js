@@ -1,5 +1,6 @@
 let card = document.getElementById('card');
 
+
 async function fetchAppointments() {
   const { data: { user } } = await client.auth.getUser();
 
