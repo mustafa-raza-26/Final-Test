@@ -3,7 +3,7 @@ let emailAp = document.getElementById('emailAp');
 let numberAp = document.getElementById('num');
 let dob = document.getElementById('dob');
 let date = document.getElementById('date');
-let time = document.getElementById('time');
+let gender = document.getElementById('gender');
 let reason = document.getElementById('reason');
 let doctor = document.getElementById('doctor');
 let submit = document.getElementById('submit');
@@ -29,16 +29,17 @@ if (submit) {
     submit.addEventListener('click', async () =>{
         let ntime = formatTime(time.value)
         const { error } = await client
-        .from('appoinmentForm')
+        .from('appoinment')
         .insert({
-            name:nameAp.value,
+            patient_Name:nameAp.value,
             email:emailAp.value,
-            number:numberAp.value,
-            dob:dob.value,
+            contact_no:numberAp.value,
+            age:dob.value,
             date:date.value,
-            time:ntime,
+            // time:ntime,
+            gender:gender.value,
             reason:reason.value,
-            doctor:doctor.value 
+            doctor_Name:doctor.value 
         })
         if (error) {
             console.log('error', error.message);
