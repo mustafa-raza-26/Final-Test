@@ -51,7 +51,8 @@ if (loginBtn) {
     }
 
     alert('You have logged in successfully!');
-    window.location.href = "https://mustafa-raza-26.github.io/Final-Test";
+    window.location.href = "./index.html";
+    // window.location.href = "https://mustafa-raza-26.github.io/Final-Test";
   });
 }
 
@@ -64,7 +65,8 @@ if (logoutBtn) {
       return;
     }
     alert('You have logged out.');
-    window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
+    window.location.href = "./login.html";
+    // window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
   });
 }
 

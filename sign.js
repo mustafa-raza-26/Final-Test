@@ -19,7 +19,8 @@ if (signupBtn) {
       email: email.value,
       password: password.value,
       options: {
-        emailRedirectTo: "https://mustafa-raza-26.github.io/Final-Test/login.html",
+        emailRedirectTo: "./login.html",
+        // emailRedirectTo: "https://mustafa-raza-26.github.io/Final-Test/login.html",
         data: {
           displayName: user_name.value,
           number: number.value
@@ -48,7 +49,8 @@ if (signupBtn) {
     }
 
     alert('Your account has been created successfully!');
-    window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
+    window.location.href = "./login.html";
+    // window.location.href = "https://mustafa-raza-26.github.io/Final-Test/login.html";
 
     user_name.value = "";
     email.value = "";
