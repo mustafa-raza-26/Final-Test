@@ -1,4 +1,4 @@
-let card = document.getElementById('card');
+let card = document.getElementById('card');//card_Display
 
 async function fetchAppointments() {
   const { data: { user } } = await client.auth.getUser();
@@ -20,14 +20,14 @@ async function fetchAppointments() {
 
   card.innerHTML = "";
 
-  if (!data || data.length === 0) {
-    card.innerHTML = `
-      <div class="text-center mt-5 p-1">
-        <h4>You don't have any appointments</h4>
-      </div>
-    `;
-    return;
-  }
+  // if (!data || data.length === 0) {
+  //   card.innerHTML = `
+  //     <div class="text-center mt-5 p-1">
+  //       <h4>You don't have any appointments</h4>
+  //     </div>
+  //   `;
+  //   return;
+  // }
 
   for (let i = 0; i < data.length; i++) {
     // Handling date_time splitting safely assuming database saves standard timestamps or strings
